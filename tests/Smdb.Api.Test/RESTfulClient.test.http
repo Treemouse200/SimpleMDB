@@ -1,0 +1,80 @@
+@host = http://localhost:8080 
+@baseurl = {{host}}/api/v1/movies
+@movieId = 1
+
+
+### =========================
+### MOVIES CONTROLLER TEST
+### (5 SUCCESS + 5 FAIL)
+### =========================
+
+### ====================
+### SUCCESSFUL REQUESTS
+### ====================
+
+### 1. Create Movie
+POST {{baseurl}}
+Content-Type: application/json
+
+{
+  "title": "Movie A",
+  "year": 2020,
+  "description": "Desc"
+}
+
+### 2. Get Movies (check ID here)
+GET {{baseurl}}?page=1&size=5
+
+### 3. Get Movie by ID 
+GET {{baseurl}}/{{movieId}}
+
+### 4. Update Movie
+PUT {{baseurl}}/{{movieId}}
+Content-Type: application/json
+
+{
+  "title": "Updated Movie",
+  "year": 2021,
+  "description": "Updated"
+}
+
+### 5. Delete Movie (RUN LAST)
+DELETE {{baseurl}}/{{movieId}}
+
+
+### ====================
+### UNSUCCESSFUL REQUESTS
+### ====================
+
+### 6. Get Movie with Invalid ID (string)
+GET {{baseurl}}/abc
+
+
+### 7. Create Movie with Missing Body
+POST {{baseurl}}
+
+
+### 8. Create Movie with Invalid Data
+POST {{baseurl}}
+Content-Type: application/json
+
+{
+  "title": "",
+  "year": 3000,
+  "description": ""
+}
+
+
+### 9. Update Non-existent Movie
+PUT {{baseurl}}/999
+Content-Type: application/json
+
+{
+  "title": "Ghost Movie",
+  "year": 2020,
+  "description": "Does not exist"
+}
+
+
+### 10. Delete Non-existent Movie
+DELETE {{baseurl}}/999

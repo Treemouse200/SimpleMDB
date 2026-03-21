@@ -1,85 +1,80 @@
-namespace Smdb.Api.Movies;
+namespace Smdb.Api.Actors;
 
 using System.Collections;
 using System.Collections.Specialized;
 using System.Net;
 using System.Text.Json;
 using Shared.Http;
-using Smdb.Core.Movies;
 using Smdb.Core.Actors;
 using Smdb.Core.ActorMovies;
 
-public class MoviesController
+public class ActorsController
 {
     private IActorMovieService actorMovieService;
-    private IMovieService movieService;
+    private IActorService actorService;
 
-    public MoviesController(IMovieService movieService, IActorMovieService actorMovieService)
+    public ActorsController(IActorService actorService, IActorMovieService actorMovieService)
     {
-        this.movieService = movieService;
+        this.actorService = actorService;
         this.actorMovieService = actorMovieService;
     }
 
 
-    // curl -X GET "http://localhost:8080/api/v1/movies?page=1&size=10"
-    public async Task ReadMovies(HttpListenerRequest req, HttpListenerResponse res,
+
+    public async Task ReadActors(HttpListenerRequest req, HttpListenerResponse res,
      Hashtable props, Func<Task> next)
     {
         int page = int.TryParse(req.QueryString["page"], out int p) ? p : 1;
         int size = int.TryParse(req.QueryString["size"], out int s) ? s : 5;
-        var result = await movieService.ReadMovies(page, size);
+        var result = await actorService.ReadActors(page, size);
         await JsonUtils.SendPagedResultResponse(req, res, props, result, page, size);
         await next();
     }
 
-    // curl -X POST "http://localhost:8080/api/v1/movies" -H "Content-Type: application/json" -d "{ \"id\": -1, \"title\": \"Inception\", \"year\": 2010,\"description\": \"A skilled thief who enters dreams to steal secrets.\" }"
-    public async Task CreateMovie(HttpListenerRequest req, HttpListenerResponse res, Hashtable props, Func<Task> next)
+    public async Task CreateActor(HttpListenerRequest req, HttpListenerResponse res, Hashtable props, Func<Task> next)
     {
         var text = (string)props["req.text"]!;
-        var movie = JsonSerializer.Deserialize<Movie>(text,
+        var actor = JsonSerializer.Deserialize<Actor>(text,
          JsonSerializerOptions.Web);
-        var result = await movieService.CreateMovie(movie!);
+        var result = await actorService.CreateActor(actor!);
         await JsonUtils.SendResultResponse(req, res, props, result);
         await next();
     }
 
-    // curl -X GET "http://localhost:8080/api/v1/movies/1"
-    public async Task ReadMovie(HttpListenerRequest req, HttpListenerResponse res,
+    public async Task ReadActor(HttpListenerRequest req, HttpListenerResponse res,
      Hashtable props, Func<Task> next)
     {
         var uParams = (NameValueCollection)props["req.params"]!;
         int id = int.TryParse(uParams["id"]!, out int i) ? i : -1;
-        var result = await movieService.ReadMovie(id);
+        var result = await actorService.ReadActor(id);
         await JsonUtils.SendResultResponse(req, res, props, result);
         await next();
     }
 
-    // curl -X PUT "http://localhost:8080/api/v1/movies/1" -H "Content-Type: application/json" -d "{ \"title\": \"Joker 2\", \"year\": 2020, \"description\":\"A man that is a joke.\" }"
-    public async Task UpdateMovie(HttpListenerRequest req,
+    public async Task UpdateActor(HttpListenerRequest req,
      HttpListenerResponse res, Hashtable props, Func<Task> next)
     {
         var uParams = (NameValueCollection)props["req.params"]!;
         int id = int.TryParse(uParams["id"]!, out int i) ? i : -1;
         var text = (string)props["req.text"]!;
-        var movie = JsonSerializer.Deserialize<Movie>(text,
+        var actor = JsonSerializer.Deserialize<Actor>(text,
          JsonSerializerOptions.Web);
-        var result = await movieService.UpdateMovie(id, movie!);
+        var result = await actorService.UpdateActor(id, actor!);
         await JsonUtils.SendResultResponse(req, res, props, result);
         await next();
     }
 
-    // curl -X DELETE http://localhost:8080/api/v1/movies/1
-    public async Task DeleteMovie(HttpListenerRequest req,
+    public async Task DeleteActor(HttpListenerRequest req,
      HttpListenerResponse res, Hashtable props, Func<Task> next)
     {
         var uParams = (NameValueCollection)props["req.params"]!;
         int id = int.TryParse(uParams["id"]!, out int i) ? i : -1;
-        var result = await movieService.DeleteMovie(id);
+        var result = await actorService.DeleteActor(id);
         await JsonUtils.SendResultResponse(req, res, props, result);
         await next();
     }
 
-    public async Task GetMovieActors(HttpListenerRequest req, HttpListenerResponse res,
+    public async Task GetActorMovies(HttpListenerRequest req, HttpListenerResponse res,
     Hashtable props, Func<Task> next)
     {
         var uParams = (NameValueCollection)props["req.params"]!;
@@ -94,7 +89,7 @@ public class MoviesController
         int page = int.TryParse(req.QueryString["page"], out int p) ? p : 1;
         int size = int.TryParse(req.QueryString["size"], out int s) ? s : 5;
 
-        var result = await actorMovieService.GetMovieActors(id, page, size);
+        var result = await actorMovieService.GetActorMovies(id, page, size);
 
         await JsonUtils.SendPagedResultResponse(req, res, props, result, page, size);
         await next();

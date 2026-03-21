@@ -1,16 +1,35 @@
 namespace Smdb.Core.Db;
 
+using Smdb.Core.Users;
 using Smdb.Core.Movies;
+using Smdb.Core.Actors;
+using Smdb.Core.ActorMovies;
 public class MemoryDatabase
 {
     public List<Movie> Movies { get; }
     private int nextMovieId;
+    public List<Actor> Actors { get; }
+    private int nextActorId;
+    public List<User> Users { get; }
+    private int nextUserId;
+    public List<ActorMovie> ActorMovies { get; }
+    private int nextActorMovieId;
+
     public MemoryDatabase()
     {
         Movies = [];
+        Actors = [];
+        Users = [];
+        ActorMovies = [];
+        nextActorMovieId = 0;
         SeedMovies();
+        SeedActors();
+        SeedUsers();
         nextMovieId = Movies.Count;
+        nextActorId = Actors.Count;
+        nextUserId = Users.Count;
     }
+
 
     private void SeedMovies()
     {
@@ -73,5 +92,48 @@ public class MemoryDatabase
     {
         return ++nextMovieId;
     }
+
+    private void SeedActors()
+    {
+        Actors.AddRange(new Actor[]
+        {
+        new Actor(1, "Leonardo DiCaprio", 1974, "Known for Inception and Titanic."),
+        new Actor(2, "Morgan Freeman", 1937, "Famous for Shawshank Redemption."),
+        new Actor(3, "Robert De Niro", 1943, "Legendary actor in crime films."),
+        new Actor(4, "Scarlett Johansson", 1984, "Black Widow in Marvel movies."),
+        new Actor(5, "Tom Hanks", 1956, "Star of Forrest Gump."),
+        new Actor(6, "Brad Pitt", 1963, "Known for Fight Club."),
+        new Actor(7, "Natalie Portman", 1981, "Star of Black Swan."),
+        new Actor(8, "Christian Bale", 1974, "Batman in The Dark Knight."),
+        new Actor(9, "Joaquin Phoenix", 1974, "Played Joker."),
+        new Actor(10, "Keanu Reeves", 1964, "Star of The Matrix.")
+        });
+    }
+
+    private void SeedUsers()
+    {
+        Users.AddRange(new User[]
+        {
+        new User(1, "john_doe", "john@email.com"),
+        new User(2, "jane_smith", "jane@email.com"),
+        new User(3, "admin", "admin@email.com")
+        });
+    }
+
+    public int NextActorId()
+    {
+        return ++nextActorId;
+    }
+
+    public int NextUserId()
+    {
+        return ++nextUserId;
+    }
+
+    public int NextActorMovieId()
+    {
+        return ++nextActorMovieId;
+    }
 }
+
 

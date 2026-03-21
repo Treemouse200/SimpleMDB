@@ -43,7 +43,7 @@ public class MemoryMovieRepository : IMovieRepository
     public async Task<Movie?> DeleteMovie(int id)
     {
         Movie? result = db.Movies.FirstOrDefault(m => m.Id == id);
-        if (result != null) { db.Movies.Remove(result); }
+        if (result != null) { db.Movies.Remove(result); db.ActorMovies.RemoveAll(am => am.MovieId == id); }
         return await Task.FromResult(result);
     }
 }
