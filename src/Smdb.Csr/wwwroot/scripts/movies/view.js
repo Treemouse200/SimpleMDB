@@ -1,4 +1,5 @@
 import { $, apiFetch, renderStatus, getQueryParam } from '/scripts/common.js';
+
 (async function initMovieView() {
 const id = getQueryParam('id');
 const statusEl = $('#status');
