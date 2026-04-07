@@ -6,13 +6,13 @@ export const getQueryParam = (k) => new URLSearchParams(location.search).get(k);
 function jsonHeaders() { return { 'Content-Type': 'application/json', 'Accept': 'application/json' };}
 
 export async function apiFetch(path, opts = {}) {
+
 const url = path.startsWith('http') ? path : `${API_BASE}${path}`;
+
 const init = { ...opts, headers: { ...(opts.headers || {}), ...jsonHeaders() } };
 
 const res = await fetch(url, init);
-
 const text = await res.text();
-
 let payload = null;
 
 try { payload = text ? JSON.parse(text) : null; } catch { payload = text; }
