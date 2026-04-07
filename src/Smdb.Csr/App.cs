@@ -1,5 +1,7 @@
 namespace Smdb.Csr;
 
+using System.Collections.Specialized;
+using System.Net;
 using Shared.Http;
 public class App : HttpServer
 {
