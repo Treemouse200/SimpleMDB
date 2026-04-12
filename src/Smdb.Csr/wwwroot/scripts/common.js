@@ -1,15 +1,17 @@
-export const API_BASE = 'http://localhost:8080/api/v1';
-export const $ = (sel, el = document) => el.querySelector(sel);
+export const API_BASE = 'http://localhost:8080/api/v1'; 
+export const $ = (sel, el = document) => el.querySelector(sel); //Shorthand for returning an CSS selector
 export const $$ = (sel, el = document) => Array.from(el.querySelectorAll(sel));
 export const getQueryParam = (k) => new URLSearchParams(location.search).get(k);
-
-function jsonHeaders() { return { 'Content-Type': 'application/json', 'Accept': 'application/json' };}
+//Input to content to JSON, Receive request from JSON.
+function jsonHeaders() { 
+    return { 'Content-Type': 'application/json', 'Accept': 'application/json' };
+}
 
 export async function apiFetch(path, opts = {}) {
 
 const url = path.startsWith('http') ? path : `${API_BASE}${path}`;
-
-const init = { ...opts, headers: { ...(opts.headers || {}), ...jsonHeaders() } };
+const init = { ...opts,
+headers: { ...(opts.headers || {}), ...jsonHeaders() } };
 
 const res = await fetch(url, init);
 const text = await res.text();
