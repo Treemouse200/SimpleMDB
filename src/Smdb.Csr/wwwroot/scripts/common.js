@@ -1,7 +1,8 @@
 export const API_BASE = 'http://localhost:8080/api/v1'; 
-export const $ = (sel, el = document) => el.querySelector(sel); //Shorthand for returning an CSS selector
-export const $$ = (sel, el = document) => Array.from(el.querySelectorAll(sel));
+export const $ = (sel, el = document) => el.querySelector(sel); //Shorthand for returning an CSS selector element
+export const $$ = (sel, el = document) => Array.from(el.querySelectorAll(sel)); //Shorthand of '$' but with more than one element
 export const getQueryParam = (k) => new URLSearchParams(location.search).get(k);
+
 //Input to content to JSON, Receive request from JSON.
 function jsonHeaders() { 
     return { 'Content-Type': 'application/json', 'Accept': 'application/json' };
@@ -33,7 +34,7 @@ throw err;
 return payload;
 }
 
-export function renderStatus(el, type, message) {
+export function renderStatus(el, type, message) { //
 if (!el) return;
 el.className = `status ${type}`;
 el.textContent = message;
