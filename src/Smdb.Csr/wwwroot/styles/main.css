@@ -1,0 +1,261 @@
+/* ============================================================
+   SimpleMDB • Frutiger Aero Theme
+   Glossy, bubbly, aqua gradients + soft shadows
+   ============================================================ */
+
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  background: linear-gradient(180deg, #dff7ff 0%, #b4e3ff 40%, #9bd4ff 100%);
+  color: #003b4f;
+  min-height: 100vh;
+}
+
+/* ------------------------------------------------------------
+   Header
+   ------------------------------------------------------------ */
+header {
+  background: linear-gradient(180deg, #ffffffcc, #e6faffaa);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid #8fdcff;
+  padding: 1.2rem 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 80, 120, 0.15);
+}
+
+header h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #004d66;
+  text-shadow: 0 1px 2px #ffffff;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+/* ------------------------------------------------------------
+   Buttons
+   ------------------------------------------------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  border: 1px solid #7cd3ff;
+  background: linear-gradient(180deg, #ffffffee, #d6f5ffcc);
+  color: #005a73;
+  font-size: 0.9rem;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 80, 120, 0.2);
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 80, 120, 0.3);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn.primary {
+  background: linear-gradient(180deg, #baffff, #6ee6ff);
+  border-color: #00c8ff;
+  color: #003b4f;
+}
+
+.btn.danger {
+  background: linear-gradient(180deg, #ffdada, #ffb3b3);
+  border-color: #ff6b6b;
+  color: #7a0000;
+}
+
+/* ------------------------------------------------------------
+   Status Messages
+   ------------------------------------------------------------ */
+.status {
+  margin-bottom: 1rem;
+  padding: 0.7rem 1rem;
+  border-radius: 0.75rem;
+  font-size: 0.9rem;
+  background: #ffffffaa;
+  backdrop-filter: blur(6px);
+  border: 1px solid #aee9ff;
+  color: #004d66;
+  box-shadow: 0 2px 6px rgba(0, 80, 120, 0.15);
+}
+
+.status.ok {
+  background: linear-gradient(180deg, #e0ffe8, #c2ffd4);
+  border-color: #5cd68a;
+}
+
+.status.err {
+  background: linear-gradient(180deg, #ffe5e5, #ffd1d1);
+  border-color: #ff7a7a;
+}
+
+.status.warn {
+  background: linear-gradient(180deg, #fff7d6, #ffefb3);
+  border-color: #ffcc66;
+}
+
+/* ------------------------------------------------------------
+   Layout
+   ------------------------------------------------------------ */
+.container {
+  max-width: 960px;
+  margin: 1.5rem auto;
+  padding: 0 1rem;
+}
+
+/* ------------------------------------------------------------
+   Cards + Grid
+   ------------------------------------------------------------ */
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.cards {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.card {
+  background: linear-gradient(180deg, #ffffffee, #e8faffdd);
+  border-radius: 1rem;
+  border: 1px solid #9fe3ff;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 80, 120, 0.15);
+  backdrop-filter: blur(8px);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 80, 120, 0.25);
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #004d66;
+  text-shadow: 0 1px 1px #ffffff;
+}
+
+.card .description {
+  font-size: 0.85rem;
+  color: #005a73;
+}
+
+/* ------------------------------------------------------------
+   Badges
+   ------------------------------------------------------------ */
+.badge {
+  display: inline-flex;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  background: linear-gradient(180deg, #ffffff, #dff7ff);
+  border: 1px solid #8fdcff;
+  color: #005a73;
+  margin-left: 0.4rem;
+  box-shadow: 0 1px 3px rgba(0, 80, 120, 0.2);
+}
+
+/* ------------------------------------------------------------
+   Forms
+   ------------------------------------------------------------ */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.field label {
+  font-size: 0.9rem;
+  color: #004d66;
+}
+
+input,
+textarea,
+select {
+  padding: 0.6rem;
+  border-radius: 0.75rem;
+  border: 1px solid #9fe3ff;
+  background: linear-gradient(180deg, #ffffff, #f0fcff);
+  color: #003b4f;
+  font-size: 0.95rem;
+  box-shadow: inset 0 1px 3px rgba(0, 80, 120, 0.15);
+}
+
+textarea {
+  min-height: 100px;
+}
+
+/* ------------------------------------------------------------
+   Tables
+   ------------------------------------------------------------ */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffffcc;
+  backdrop-filter: blur(6px);
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 80, 120, 0.15);
+}
+
+.table th,
+.table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #ccefff;
+}
+
+.table th {
+  background: linear-gradient(180deg, #e8faff, #d6f5ff);
+  color: #004d66;
+  font-weight: 600;
+}
+
+.table tr:last-child td {
+  border-bottom: none;
+}
+
+/* ------------------------------------------------------------
+   Pagination Controls
+   ------------------------------------------------------------ */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+#page-size {
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid #8fdcff;
+  background: linear-gradient(180deg, #ffffff, #e6faff);
+  color: #004d66;
+}

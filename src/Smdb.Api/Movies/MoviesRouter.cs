@@ -10,8 +10,8 @@ public class MoviesRouter : HttpRouter
     {
         UseParametrizedRouteMatching();
 
-        MapGet("", controller.ReadMovies);
-        MapPost("", HttpUtils.ReadRequestBodyAsText, controller.CreateMovie);
+        MapGet("/", controller.ReadMovies);
+        MapPost("/", HttpUtils.ReadRequestBodyAsText, controller.CreateMovie);
         MapGet("/:id", controller.ReadMovie);
         MapPut("/:id", HttpUtils.ReadRequestBodyAsText, controller.UpdateMovie);
         MapDelete("/:id", controller.DeleteMovie);

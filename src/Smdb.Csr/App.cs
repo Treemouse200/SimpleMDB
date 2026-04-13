@@ -22,5 +22,7 @@ public class App : HttpServer
         router.UseSimpleRouteMatching();
         router.MapGet("/", async (req, res, props, next) => { res.Redirect("/index.html"); await next(); });
         router.MapGet("/movies", async (req, res, props, next) => { res.Redirect("/movies/index.html"); await next(); });
+        router.MapGet("/actors", async (req, res, props, next) => { res.Redirect("/actors/index.html"); await next(); });
+        router.MapGet("/users", async (req, res, props, next) => { res.Redirect("/users/index.html"); await next(); });
     }
 }
