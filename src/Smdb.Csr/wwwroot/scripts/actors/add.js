@@ -16,6 +16,12 @@ function captureActorForm(form) {
     ev.preventDefault();
     const payload = captureActorForm(form);
 
+    if (payload.name.value > 50)
+    {
+      renderStatus(statusEl, 'err', 'Name should not be greater than 100.')
+      return
+    }
+
     try {
       const created = await apiFetch('/actors', {
         method: 'POST',

@@ -11,13 +11,12 @@ ev.preventDefault();
 const payload = captureMovieForm(form);
 // Input validation and feedback goes here. For example:
 //
-// if(payload.title.length > 256) {
-// renderStatus(statusEl, 'err',
- // 'Title should not be longer than 256 characters.');
-// return;
-// } else if (...) {
-// ...
-// }
+if(payload.title.length > 50) {
+ renderStatus(statusEl, 'err',
+  'Title should not be longer than 50 characters.');
+return;
+ }
+
 try {
 const created = await apiFetch('/movies', { method: 'POST', body: JSON.stringify(payload) });
 renderStatus(statusEl, 'ok', `Created movie #${created.id} "${created.title}" (${created.year}).`);
